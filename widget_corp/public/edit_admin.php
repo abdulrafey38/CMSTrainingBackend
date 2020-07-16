@@ -34,7 +34,7 @@
         {   
             $id = $current_admin["id"];
             $username = mysql_prep($_POST["username"]);
-            $password= password_encrypt($_POST["password"]);
+            $password= password_encrypt($_POST["password"],PASSWORD_BCRYPT);
             
         
             $query = "Update admins set username = '{$username}',hashed_password = '{$password}' where id = {$id} limit 1";
@@ -62,36 +62,57 @@
 
 
 ?> 
-       <div id="main">
-            <div id="navigation">
-                &nbsp;
-            </div>
 
-            <div id ="page">
-                <h2>Edit Admin</h2>
 
-                <?php
-                    echo message();
-                ?>
-                <?php $errors= errors(); ?>
-                <?php echo form_error($errors); ?>
 
-            
-                <form action="edit_admin.php?id=<?php echo urlencode($current_admin["id"]);?>" method="post">
-                    <p>
-                        UserName  <input type="text" name="username" value=""/>
-                    </p>
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-85 p-b-20">
+				<form class="login100-form validate-form" method="post" action="edit_admin.php?id=<?php echo urlencode($current_admin["id"]);?>">
+					<span class="login100-form-title p-b-70">
+						Edit Admin
+					</span>
+					
+					<?php
+						echo message();
+					?>
+					<?php $errors= errors(); ?>
+					<?php echo form_error($errors); ?>
 
-                    <p>
-                        Password  <input type="password" name="password" value=""/>
-                    </p>
+					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
+						<input class="input100" type="text" name="username" value="<?php echo $current_admin["username"];?>">
+						<span class="focus-input100" data-placeholder="Username"></span>
+					</div>
 
-                    <input type="submit" name="submit" value="Update Admin"/>
-                </form>
+					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+						<input class="input100" type="password" name="password">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
 
-                <a href="manage_admins.php">Cancel</a>
-            </div>
-        </div>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit" name = "submit">
+							Update Admin
+						</button>
+                    </div>
+                    <br />
+                    
+                    <div class="container-login100-form-btn">
+						<a href="manage_admins.php" class="login100-form-can" type="submit" name = "submit">
+							Cancel
+                        </a>
+					</div>
+
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+
+    <script src="javascript/main.js"></script>
+
 
         <?php include("../includes/layouts/footer.php"); ?>
    

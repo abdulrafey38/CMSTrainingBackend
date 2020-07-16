@@ -133,7 +133,7 @@
     function find_admin_by_id($admin_id)
     {
         global $connection ;  
-        $safe_admin_id = mysqli_real_escape_string($connection,$admin_id);
+        $safe_admin_id = mysql_prep($admin_id);
         $query =  "Select * from admins where id = {$safe_admin_id} Limit 1";
         $admin_set = mysqli_query($connection,$query);
         confirm_query($admin_set);
@@ -142,7 +142,7 @@
         return $admin;
         }
         else{
-            return   null;
+            return null;
         }
     }
 
@@ -199,7 +199,7 @@
         $admin = find_admin_by_username($username);
         if($admin)
         {   
-            if(password_check($password,$admin["hashed_password"]))
+            if(password_verify($password,$admin["hashed_password"]))
             {   
                 return $admin;
             }

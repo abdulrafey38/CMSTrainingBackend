@@ -40,30 +40,47 @@
     }
 ?>
 
-<div id="main">
-    <div id="navigation">
-        &nbsp;
-    </div>
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-t-85 p-b-20">
+				<form class="login100-form validate-form" method="post" action="login.php">
+					<span class="login100-form-title p-b-70">
+						Welcome
+					</span>
+					<span class="login100-form-avatar">
+						<img src="images/image.png" alt="AVATAR">
+					</span>
+					<?php
+						echo message();
+					?>
+					<?php $errors= errors(); ?>
+					<?php echo form_error($errors); ?>
+
+					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
+						<input class="input100" type="text" name="username">
+						<span class="focus-input100" data-placeholder="Username"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+						<input class="input100" type="password" name="password">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit" name = "submit">
+							Login
+						</button>
+					</div>
+
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+
+    <script src="javascript/main.js"></script>
     
-    <div id ="page">
-        <h2>Login</h2>
-        <?php
-            echo message();
-        ?>
-        <?php $errors= errors(); ?>
-        <?php echo form_error($errors); ?>
-        <form action="login.php" method="post">
-            <p>
-                UserName  <input type="text" name="username" value="<?php 
-                                echo htmlentities($username);?>"/>
-            </p>
-            <p>
-                Password  <input type="password" name="password" value=""/>
-            </p>
-
-            <input type="submit" name="submit" value="Login"/>
-        </form>
-    </div>
-</div>
-
 <?php include("../includes/layouts/footer.php"); ?>

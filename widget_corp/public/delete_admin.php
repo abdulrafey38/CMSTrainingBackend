@@ -21,12 +21,12 @@
 
     if($result && mysqli_affected_rows($connection) == 1 )
     {
-        $_SESSION["message"] = "Subject Deleted!!!!";
+        $_SESSION["message"] = "Admin Deleted!!!!";
         redirect("manage_admins.php");
     }
     else
     {
-        $_SESSION["message"]= "Subject Deletion Failed!!!";
+        $_SESSION["message"]= "Admin Deletion Failed!!!";
         redirect("manage_admins.php?id={$id}");
     }
 

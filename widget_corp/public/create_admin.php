@@ -26,8 +26,6 @@
           $_SESSION["errors"] = $errors; 
           redirect("new_admin.php");
       }
-      
-      
 
       $query = "Insert  into admins (username,hashed_password) 
                Values('{$username}','{$password}')";
